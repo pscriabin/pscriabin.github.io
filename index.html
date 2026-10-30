@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Philip | Projects</title>
+  <meta name="description" content="Projects by Philip: Python, automation, and applied ML.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#">Philip Scriabin</a>
+  <nav>
+    <a href="#runs">Projects</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO: edit the headline + intro here -->
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>I build software that learns, and automation that saves people hours.</h1>
+      <p>Python engineer moving into machine learning. Below is what I've shipped, laid out like training runs: what it is, what it's built with, and what it does.</p>
+    </div>
+      <aside class="now" aria-label="What I'm working on">
+      <div class="now-head"><span class="dot"></span>Now<span class="now-date">Updated Oct 2026</span></div>
+      <ul>
+        <li><span class="k">Building</span><span class="v">NHL game server, open source (C#)</span><span class="tag live">in progress</span></li>
+        <li><span class="k">Learning</span><span class="v">Machine learning with Python</span><span class="tag live">in progress</span></li>
+        <li><span class="k">Shipped</span><span class="v">Discord bot that summarizes game news (Python)</span><span class="tag done">shipped</span></li>
+        <li><span class="k">Next</span><span class="v">My first end-to-end ML project</span><span class="tag">planned</span></li>
+      </ul>
+    </aside>  
+  </section>
+
+  <!-- PROJECTS: rendered from projects.js -->
+  <section id="runs">
+    <h2>Projects</h2>
+    <div id="project-list" class="runs"></div>
+  </section>
+
+  <!-- STACK: edit the lists in main.js (STACK) -->
+  <section id="stack">
+    <h2>Stack</h2>
+    <div id="stack-list" class="stack"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="contact-line">
+      <a href="mailto:scriabin8@gmail.com">scriabin8@gmail.com</a>
+      <a href="https://github.com/pscriabin">GitHub</a>
+      <a href="https://www.linkedin.com/in/philip-scriabin/">LinkedIn</a>
+    </p>
+  </section>
+</main>
+
+<footer>Built by hand with HTML, CSS and JavaScript. Edit it in VS Code.</footer>
+
+<script src="projects.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
