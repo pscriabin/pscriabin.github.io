@@ -1,69 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Philip | Projects</title>
-  <meta name="description" content="Projects by Philip: Python, automation, and applied ML.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Philip Scriabin | Projects</title>
+<meta name="color-scheme" content="dark">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070d11; --text:#e8f1f2; --muted:#9db3b8; --line:#1c2f36; --surface:#0d171c;
+  --accent:#5eead4; --warm:#ffb454;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.05rem/1.6 'Sora',system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--warm);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;color:var(--muted);font-size:.95rem}
+header b{color:var(--text);font-weight:600}
+header nav{display:flex;gap:26px}
+header nav a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;min-height:min(78vh,720px)}
+.kicker{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{margin:18px 0 0;font-size:clamp(2.4rem,5.2vw,4.2rem);line-height:1.04;letter-spacing:-.03em;font-weight:800}
+.lede{margin:24px 0 0;color:var(--muted);max-width:30em}
+.btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:999px;border:1px solid #28444c;font-weight:600}
+.btn.p{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn:hover{filter:brightness(1.12)}
+.stage{position:relative;aspect-ratio:1/1;width:100%;max-height:78vh;justify-self:end}
+#brain{position:absolute;inset:0;width:100%;height:100%}
+section{padding:72px 0 8px}
+h2{margin:0 0 28px;font-size:1.7rem;letter-spacing:-.02em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px}
+.chip{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.chip.wip{color:var(--warm)}
+.card h3{margin:10px 0 8px;font-size:1.35rem;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tags span{font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--muted)}
+.now li{display:flex;gap:14px;padding:10px 0;border-top:1px solid var(--line);list-style:none}
+.now{margin:0;padding:0}
+.now .k{width:5.5rem;color:var(--muted);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding-top:3px}
+.contact{display:flex;gap:28px;flex-wrap:wrap;font-size:1.15rem}
+.contact a{color:var(--accent)}
+footer{color:var(--muted);font-size:.9rem;padding:48px 0;border-top:1px solid var(--line);margin-top:72px}
+.know{display:block;margin-top:14px;pointer-events:none}
+.kbtn{pointer-events:auto;display:inline-flex;align-items:center;gap:10px;font:600 1rem/1 'Sora',system-ui,sans-serif;color:var(--text);background:none;border:1px dashed #2f5560;border-radius:999px;padding:14px 26px;cursor:pointer}
+.kbtn svg{transition:transform .3s}
+.know:hover .kbtn,.know:focus-within .kbtn,.know.open .kbtn{border-color:var(--accent);color:var(--accent)}
+.know:hover .kbtn svg,.know:focus-within .kbtn svg,.know.open .kbtn svg{transform:rotate(180deg)}
+.web{width:min(560px,100%);display:grid;grid-template-rows:0fr;opacity:0;pointer-events:none;transition:grid-template-rows .5s ease,opacity .3s}
+.web>div{min-height:0;overflow:hidden}
+.know:hover .web,.know:focus-within .web,.know.open .web{grid-template-rows:1fr;opacity:1;pointer-events:auto}
+.webin{margin:10px 0 6px;background:#0a1317;border:1px solid var(--line);border-radius:16px;padding:8px}
+#web{display:block;width:100%}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.web,.kbtn svg{transition:none}}
+.hero{align-items:start}.hero>div:first-child{padding-top:56px}
+@media (max-width:820px){.hero>div:first-child{padding-top:0}}
+@media (max-width:820px){.hero{grid-template-columns:1fr;min-height:0}.stage{order:-1;max-width:460px;justify-self:center}}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <header><b>Philip Scriabin</b><nav><a href="#work">Projects</a><a href="#now">Now</a><a href="#contact">Contact</a></nav></header>
 
-<header class="top">
-  <a class="brand" href="#">Philip Scriabin</a>
-  <nav>
-    <a href="#runs">Projects</a>
-    <a href="#stack">Stack</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main>
-  <!-- HERO: edit the headline + intro here -->
-  <section class="hero">
-    <div class="hero-copy">
-      <h1>I build software that learns, and automation that saves people hours.</h1>
-      <p>Python engineer moving into machine learning. Below is what I've shipped, laid out like training runs: what it is, what it's built with, and what it does.</p>
+  <div class="hero">
+    <div>
+      <div class="kicker">Python · C# · Machine learning</div>
+      <h1>I build tools that save people hours.</h1>
+      <p class="lede">Technical Account Manager who also builds. My projects span Python automation, open-source C#, and applied AI and machine learning.</p>
+      <div class="btns"><a class="btn p" href="#work">See projects</a><a class="btn" href="#contact">Contact</a></div>
+      <div class="know" id="know">
+        <button class="kbtn" type="button" aria-expanded="false" aria-controls="webwrap">Get To Know Me <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="web" id="webwrap"><div><div class="webin"><canvas id="web" aria-hidden="true"></canvas><ul class="sr" id="webfacts"></ul></div></div></div>
+      </div>
     </div>
-      <aside class="now" aria-label="What I'm working on">
-      <div class="now-head"><span class="dot"></span>Now<span class="now-date">Updated Oct 2026</span></div>
-      <ul>
-        <li><span class="k">Building</span><span class="v">NHL game server, open source (C#)</span><span class="tag live">in progress</span></li>
-        <li><span class="k">Learning</span><span class="v">Machine learning with Python</span><span class="tag live">in progress</span></li>
-        <li><span class="k">Shipped</span><span class="v">Discord bot that summarizes game news (Python)</span><span class="tag done">shipped</span></li>
-        <li><span class="k">Next</span><span class="v">My first end-to-end ML project</span><span class="tag">planned</span></li>
-      </ul>
-    </aside>  
-  </section>
+    <div class="stage"><canvas id="brain" role="img" aria-label="Animated network of neurons rotating in a vortex while signals fire between them"></canvas></div>
+  </div>
 
-  <!-- PROJECTS: rendered from projects.js -->
-  <section id="runs">
+  <section id="work">
     <h2>Projects</h2>
-    <div id="project-list" class="runs"></div>
+    <div class="grid">
+      <article class="card"><div class="chip">Shipped</div><h3>Game News Discord Bot</h3><p>Turns long game news posts into short summaries and posts them to my team’s Discord server.</p><div class="tags"><span>Python</span><span>Discord API</span><span>Web scraping</span></div></article>
+      <article class="card"><div class="chip wip">In progress</div><h3>NHL Server Project</h3><p>Contributing to an open-source community server that brings an older NHL game back online.</p><div class="tags"><span>C#</span><span>Git</span><span>Open source</span></div></article>
+    </div>
   </section>
 
-  <!-- STACK: edit the lists in main.js (STACK) -->
-  <section id="stack">
-    <h2>Stack</h2>
-    <div id="stack-list" class="stack"></div>
+  <section id="now">
+    <h2>Now</h2>
+    <div class="card"><ul class="now">
+      <li><span class="k">Building</span><span>Open-source NHL server work in C#</span></li>
+      <li><span class="k">Learning</span><span>Machine learning with Python</span></li>
+      <li><span class="k">Next</span><span>My first end-to-end ML project</span></li>
+    </ul></div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p class="contact-line">
-      <a href="mailto:scriabin8@gmail.com">scriabin8@gmail.com</a>
-      <a href="https://github.com/pscriabin">GitHub</a>
-      <a href="https://www.linkedin.com/in/philip-scriabin/">LinkedIn</a>
-    </p>
+    <div class="contact"><a href="mailto:scriabin8@gmail.com">scriabin8@gmail.com</a><a href="https://github.com/pscriabin">GitHub</a><a href="https://www.linkedin.com/in/philip-scriabin/">LinkedIn</a></div>
   </section>
-</main>
 
-<footer>Built by hand with HTML, CSS and JavaScript.</footer>
+  <footer>Built by hand with HTML, CSS and JavaScript.</footer>
+</div>
 
-<script src="projects.js"></script>
-<script src="main.js"></script>
+<script>
+(function () {
+  var cv = document.getElementById('brain'), cx = cv.getContext('2d');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W, H, dpr;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect(); W = r.width; H = r.height;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  addEventListener('resize', size); size();
+
+  // --- build a 4D vortex of neurons (x, y, z, w) ---
+  var seed = 11, rnd = function () { return (seed = seed * 16807 % 2147483647) / 2147483647; };
+  var N = 320, nodes = [], i, j;
+  for (i = 0; i < N; i++) {
+    var core = rnd() < 0.2, r, a, y;
+    if (core) { r = 0.05 + 0.2 * rnd(); a = rnd() * 6.283; y = (rnd() - 0.5) * 0.5; }
+    else {
+      r = 0.12 + 0.88 * Math.pow(rnd(), 0.8);
+      a = r * 6.4 + (i % 3) * 2.094 + (rnd() - 0.5) * 0.45;
+      y = (rnd() - 0.5) * 0.9 * Math.pow(1 - r, 1.4);
+    }
+    nodes.push({ x: r * Math.cos(a), y: y, z: r * Math.sin(a), w: (rnd() - 0.5) * 0.9, g: 0, px: 0, py: 0, d: 0 });
+  }
+  // connect each neuron to its nearest neighbours
+  var edges = [], adj = nodes.map(function () { return []; }), seen = {};
+  for (i = 0; i < N; i++) {
+    var ds = [];
+    for (j = 0; j < N; j++) if (j !== i) {
+      var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dz = nodes[i].z - nodes[j].z, dw = nodes[i].w - nodes[j].w;
+      ds.push([dx * dx + dy * dy + dz * dz + dw * dw, j]);
+    }
+    ds.sort(function (p, q) { return p[0] - q[0]; });
+    for (var k = 0; k < 3; k++) {
+      var b = ds[k][1], key = Math.min(i, b) + '-' + Math.max(i, b);
+      if (!seen[key]) { seen[key] = 1; adj[i].push(edges.length); adj[b].push(edges.length); edges.push([i, b]); }
+    }
+  }
+
+  // --- synapse pulses travel along edges and fire the next neuron ---
+  var pulses = [];
+  function spawn(e, from) { if (pulses.length < 110) pulses.push({ e: e, f: from, p: 0, v: 0.5 + rnd() * 0.7 }); }
+  function fire(n, via) {
+    nodes[n].g = 1;
+    var list = adj[n];
+    for (var q = 0; q < list.length; q++) if (list[q] !== via && rnd() < 0.55) spawn(list[q], n);
+  }
+
+  var last = performance.now();
+  function frame(now) {
+    var dt = Math.min((now - last) / 1000, 0.05); last = now; var t = now * 0.001;
+    cx.clearRect(0, 0, W, H);
+    var R = Math.min(W, H) * 0.4, ox = W / 2, oy = H / 2;
+    var a4 = Math.sin(t * 0.23) * 0.55, b4 = Math.cos(t * 0.17) * 0.4;       // rotation inside the 4th dimension
+    var ay = t * 0.3, ax = 0.95 + Math.sin(t * 0.19) * 0.25;                   // ordinary 3D spin and tilt
+    var c1 = Math.cos(a4), s1 = Math.sin(a4), c2 = Math.cos(b4), s2 = Math.sin(b4);
+    var cy = Math.cos(ay), sy = Math.sin(ay), cxx = Math.cos(ax), sxx = Math.sin(ax);
+    for (i = 0; i < N; i++) {
+      var n = nodes[i];
+      var x = n.x * c1 - n.w * s1, w = n.x * s1 + n.w * c1;
+      var z = n.z * c2 - w * s2; w = n.z * s2 + w * c2;
+      var s = 2.4 / (2.4 - w);                                                // 4D to 3D projection
+      x *= s; var yy = n.y * s; z *= s;
+      var X = x * cy + z * sy, Z = -x * sy + z * cy;
+      var Y = yy * cxx - Z * sxx, Z2 = yy * sxx + Z * cxx;
+      var f = 2.6 / (2.6 - Z2);
+      n.px = ox + X * f * R; n.py = oy + Y * f * R;
+      n.d = Math.max(0, Math.min(1, (Z2 + 1.3) / 2.6)); n.s = f;
+    }
+    cx.globalCompositeOperation = 'lighter';
+    cx.lineWidth = 1;
+    for (i = 0; i < edges.length; i++) {
+      var A = nodes[edges[i][0]], B = nodes[edges[i][1]];
+      cx.strokeStyle = 'rgba(94,234,212,' + (0.04 + 0.2 * (A.d + B.d) / 2 + 0.5 * Math.max(A.g, B.g) * 0.4) + ')';
+      cx.beginPath(); cx.moveTo(A.px, A.py); cx.lineTo(B.px, B.py); cx.stroke();
+    }
+    for (i = 0; i < N; i++) {
+      var m = nodes[i], rad = (1 + 2.6 * m.d) * m.s * 0.9 + m.g * 4;
+      if (m.g > 0.05) { cx.fillStyle = 'rgba(94,234,212,' + (0.18 * m.g) + ')'; cx.beginPath(); cx.arc(m.px, m.py, rad * 3.2, 0, 6.283); cx.fill(); }
+      cx.fillStyle = 'rgba(' + (m.g > 0.3 ? '255,255,255' : '94,234,212') + ',' + Math.min(1, 0.25 + 0.6 * m.d + m.g) + ')';
+      cx.beginPath(); cx.arc(m.px, m.py, rad, 0, 6.283); cx.fill();
+      m.g *= 0.95;
+    }
+    if (!reduce) {
+      if (rnd() < 0.18) { var ee = (rnd() * edges.length) | 0; spawn(ee, edges[ee][0]); }
+      for (i = pulses.length - 1; i >= 0; i--) {
+        var pu = pulses[i], ed = edges[pu.e], from = nodes[pu.f], toI = ed[0] === pu.f ? ed[1] : ed[0], to = nodes[toI];
+        pu.p += pu.v * dt;
+        if (pu.p >= 1) { pulses.splice(i, 1); fire(toI, pu.e); continue; }
+        var hx = from.px + (to.px - from.px) * pu.p, hy = from.py + (to.py - from.py) * pu.p;
+        var tp = Math.max(0, pu.p - 0.22), tx = from.px + (to.px - from.px) * tp, ty = from.py + (to.py - from.py) * tp;
+        cx.strokeStyle = 'rgba(190,255,245,0.9)'; cx.lineWidth = 2;
+        cx.beginPath(); cx.moveTo(tx, ty); cx.lineTo(hx, hy); cx.stroke();
+        cx.fillStyle = 'rgba(255,255,255,0.95)'; cx.beginPath(); cx.arc(hx, hy, 2.6, 0, 6.283); cx.fill();
+      }
+    }
+    cx.globalCompositeOperation = 'source-over';
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ===== GET TO KNOW ME web: straight lines, a few slow synapses ===== */
+(function () {
+  // EDIT HERE: add one line per fact and a new branch appears below the others
+  var FACTS = [
+    { big: '10 years', label: 'Technical operations' },
+    { big: '6 years', label: 'Genesys Cloud' },
+    { big: '3 years', label: 'Python' }
+  ];
+  var SPEED = 62;        // pixels per second the signals travel (lower = slower)
+  var EVERY = 3200;      // milliseconds between signals
+  var know = document.getElementById('know'), btn = know.querySelector('.kbtn');
+  var cv = document.getElementById('web'), cx = cv.getContext('2d'), list = document.getElementById('webfacts');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  FACTS.forEach(function (f) { var li = document.createElement('li'); li.textContent = f.big + ': ' + f.label; list.appendChild(li); });
+
+  var W = 0, H = 0, nodes = [], edges = [], adj = [], lens = [], ends = [], pulses = [], rowH = 84, top = 60, labelX = 0, textW = 0;
+  function node(x, y, kind) { nodes.push({ x: x, y: y, k: kind, g: 0 }); adj.push([]); return nodes.length - 1; }
+  function link(a, b) { edges.push([a, b]); adj[a].push(edges.length - 1); adj[b].push(edges.length - 1); }
+  function build() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth || 520; H = top + (FACTS.length - 1) * rowH + 36;
+    cv.style.height = H + 'px'; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    nodes = []; edges = []; adj = []; ends = []; pulses = [];
+    var spineX = 34, chain = W < 440 ? 110 : 150;
+    labelX = spineX + chain + 26; textW = Math.max(90, W - labelX - 14);
+    var prev = node(spineX, 24, 'root');
+    FACTS.forEach(function (f, r) {
+      var y = top + r * rowH, hub = node(spineX, y, 'hub'); link(prev, hub); prev = hub;
+      var q = hub;
+      for (var k = 1; k <= 4; k++) { var c = node(spineX + chain * k / 4, y, 'chain'); link(q, c); q = c; }
+      ends.push(q);
+    });
+    lens = edges.map(function (e) { return Math.hypot(nodes[e[0]].x - nodes[e[1]].x, nodes[e[0]].y - nodes[e[1]].y); });
+  }
+  addEventListener('resize', build); build();
+
+  function isOpen() { return know.matches(':hover') || know.matches(':focus-within') || know.classList.contains('open'); }
+  btn.addEventListener('click', function () { know.classList.toggle('open'); });
+  document.addEventListener('click', function (e) { if (!know.contains(e.target)) know.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { know.classList.remove('open'); btn.blur(); } });
+
+  function spawn(e, from) { if (pulses.length < 8) pulses.push({ e: e, f: from, p: 0 }); }
+  function fire(n, via) { nodes[n].g = 1; for (var q = 0; q < adj[n].length; q++) if (adj[n][q] !== via) spawn(adj[n][q], n); }
+  function wrap(t, x, y, maxW, lh) {
+    var words = t.split(' '), line = '', i;
+    for (i = 0; i < words.length; i++) {
+      var test = line ? line + ' ' + words[i] : words[i];
+      if (cx.measureText(test).width > maxW && line) { cx.fillText(line, x, y); line = words[i]; y += lh; } else line = test;
+    }
+    cx.fillText(line, x, y);
+  }
+
+  var last = performance.now(), nextSig = 0, wasOpen = null, i;
+  function frame(now) {
+    var open = isOpen(), dt = Math.min((now - last) / 1000, 0.05); last = now;
+    if (open !== wasOpen) {
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { pulses = []; nextSig = now + 500; nodes.forEach(function (n) { n.g = 0; }); }
+      wasOpen = open;
+    }
+    if (open) {
+      cx.clearRect(0, 0, W, H);
+      cx.globalCompositeOperation = 'lighter'; cx.lineWidth = 1;
+      for (i = 0; i < edges.length; i++) {
+        var A = nodes[edges[i][0]], B = nodes[edges[i][1]];
+        cx.strokeStyle = 'rgba(94,234,212,' + (0.2 + 0.3 * Math.max(A.g, B.g)) + ')';
+        cx.beginPath(); cx.moveTo(A.x, A.y); cx.lineTo(B.x, B.y); cx.stroke();
+      }
+      for (i = 0; i < nodes.length; i++) {
+        var n = nodes[i], r = n.k === 'root' ? 6 : n.k === 'hub' ? 5 : 3.5;
+        if (n.g > 0.05) { cx.fillStyle = 'rgba(94,234,212,' + 0.22 * n.g + ')'; cx.beginPath(); cx.arc(n.x, n.y, (r + n.g * 4) * 3, 0, 6.283); cx.fill(); }
+        cx.fillStyle = n.g > 0.3 ? 'rgba(255,255,255,0.95)' : 'rgba(94,234,212,0.8)';
+        cx.beginPath(); cx.arc(n.x, n.y, r + n.g * 2.5, 0, 6.283); cx.fill();
+        n.g *= 0.97;
+      }
+      if (!reduce) {
+        if (now > nextSig) { nextSig = now + EVERY; spawn(adj[0][0], 0); }
+        for (i = pulses.length - 1; i >= 0; i--) {
+          var pu = pulses[i], ed = edges[pu.e], ti = ed[0] === pu.f ? ed[1] : ed[0], F = nodes[pu.f], T = nodes[ti];
+          pu.p += SPEED * dt / lens[pu.e];
+          if (pu.p >= 1) { pulses.splice(i, 1); fire(ti, pu.e); continue; }
+          var hx = F.x + (T.x - F.x) * pu.p, hy = F.y + (T.y - F.y) * pu.p, tp = Math.max(0, pu.p - 20 / lens[pu.e]);
+          cx.strokeStyle = 'rgba(190,255,245,0.85)'; cx.lineWidth = 2;
+          cx.beginPath(); cx.moveTo(F.x + (T.x - F.x) * tp, F.y + (T.y - F.y) * tp); cx.lineTo(hx, hy); cx.stroke();
+          cx.fillStyle = 'rgba(255,255,255,0.95)'; cx.beginPath(); cx.arc(hx, hy, 2.6, 0, 6.283); cx.fill();
+        }
+      }
+      cx.globalCompositeOperation = 'source-over'; cx.textBaseline = 'alphabetic';
+      cx.fillStyle = 'rgba(157,179,184,0.9)'; cx.font = '600 13px Sora, system-ui, sans-serif'; cx.fillText('Philip', 50, 28);
+      FACTS.forEach(function (f, r) {
+        var g = nodes[ends[r]].g, y = top + r * rowH;
+        cx.fillStyle = 'rgb(' + Math.round(232 - 138 * g) + ',' + Math.round(241 - 7 * g) + ',' + Math.round(242 - 30 * g) + ')';
+        cx.font = '800 26px Sora, system-ui, sans-serif'; cx.fillText(f.big, labelX, y - 2);
+        cx.fillStyle = 'rgba(157,179,184,1)'; cx.font = '400 14px Sora, system-ui, sans-serif'; wrap(f.label, labelX, y + 20, textW, 18);
+      });
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
